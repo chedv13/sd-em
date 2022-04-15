@@ -18,6 +18,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": "git://github.com/chedv13/sd-em.git",
   "author": "",
   "license": "ISC"
