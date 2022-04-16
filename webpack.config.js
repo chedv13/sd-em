@@ -18,6 +18,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
         library: 'SD',
-        libraryTarget: 'var'
+        libraryTarget: 'umd'
     },
 };
