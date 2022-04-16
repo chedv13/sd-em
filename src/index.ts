@@ -1,7 +1,12 @@
 export class SD {
     static apiUrl: string = 'http://0.0.0.0:3001/api/v1/em';
 
+    connectionID: string;
     success?: boolean;
+
+    constructor(connectionID: string) {
+        this.connectionID = connectionID;
+    }
 
     attachDrawingModal(cssSelector: string, shopDrawingID: string) {
         const elements = window.document.querySelectorAll(cssSelector);
@@ -44,13 +49,13 @@ export class SD {
         return `<iframe src="http://localhost:3000/sd/${shopDrawingID}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
     }
 
-    private validateConnectionID = async (connectionID: string) => {
+    private validateConnectionID = async () => {
         try {
             const
                 response = await fetch(`${SD.apiUrl}/connections/validate`, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-SD-ConnectionID': connectionID,
+                        'X-SD-ConnectionID': this.connectionID,
                         'X-SD-Host': window.location.host
                     }
                 }),
