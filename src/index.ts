@@ -6,6 +6,7 @@ export class SD {
 
     constructor(connectionID: string) {
         this.connectionID = connectionID;
+        this.success = undefined;
     }
 
     attachDrawingModal(cssSelector: string, shopDrawingID: string) {
