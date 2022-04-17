@@ -1,34 +1,13 @@
-//{
-//  "compilerOptions": {
-//    "declaration": true,
-//    "lib": [
-//      "DOM",
-//      "ES5"
-//    ],
-//    "module": "commonjs",
-//    "noImplicitAny": true,
-//    "outDir": "./dist",
-//    "rootDir": "./src",
-//    "sourceMap": true,
-//    "target": "es5"
-//  }
-//}
 {
   "compilerOptions": {
-    "lib": [
-      "DOM"
-    ],
-    "allowJs": true,
     "declaration": true,
+    "lib": [
+      "DOM",
+      "ES2015"
+    ],
+    "noImplicitAny": true,
     "outDir": "./dist",
-    "sourceMap": true,
-    "target": "es6",
-    "module": "es6",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
-  },
-  "include": [
-    "./src/**/*"
-  ]
+    "rootDir": "./src",
+    "target": "es5"
+  }
 }
