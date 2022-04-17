@@ -15,11 +15,18 @@
 //}
 {
   "compilerOptions": {
+    "lib": [
+      "DOM"
+    ],
     "allowJs": true,
     "declaration": true,
     "outDir": "./dist",
     "sourceMap": true,
-    "target": "es5"
+    "target": "es6",
+    "module": "es6",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": [
     "./src/**/*"
