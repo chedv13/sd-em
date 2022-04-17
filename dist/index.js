@@ -6,7 +6,17 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["SD"] = factory();
+	else
+		root["SD"] = factory();
+})(self, () => {
+return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -28,7 +38,8 @@ eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _argument
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = {};
 /******/ 	__webpack_modules__["./src/index.ts"](0, __webpack_exports__);
-/******/ 	this.SD = __webpack_exports__;
 /******/ 	
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});
