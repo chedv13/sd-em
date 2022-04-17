@@ -9,4 +9,3 @@ export default class SD {
     private validateConnectionID;
     private static createInvalidResponse;
 }
-export declare var __useDefault: boolean;

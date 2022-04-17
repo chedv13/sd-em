@@ -6,7 +6,12 @@ const config1 = {
         rules: [
             {
                 test: /\.ts$/,
-                use: 'ts-loader',
+                use: [{
+                    loader: 'ts-loader',
+                    options: {
+                        configFile: "tsconfig.json"
+                    }
+                }],
                 exclude: /node_modules/,
             }
         ]
@@ -18,7 +23,7 @@ const config1 = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
         library: 'SD',
-        libraryTarget: 'umd'
+        libraryTarget: 'this'
     }
 };
 
