@@ -1,6 +1,6 @@
 {
   "name": "@chedv13/sd-em",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "",
   "dependencies": {
     "jest": "^27.5.1",
