@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "lib": [
       "DOM",
-      "ES2021"
+      "ES5"
     ],
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "sourceMap": true,
-    "target": "es5",
-    "declaration": true
+    "target": "es5"
   }
 }

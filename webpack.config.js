@@ -2,7 +2,6 @@ const path = require('path');
 
 const config1 = {
     entry: './src/index.ts',
-    target: ['web', 'es5'],
     module: {
         rules: [
             {
@@ -17,7 +16,9 @@ const config1 = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js'
+        filename: 'index.js',
+        library: 'SD',
+        libraryTarget: 'umd'
     }
 };
 
