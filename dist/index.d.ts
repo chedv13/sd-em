@@ -1,4 +1,4 @@
-export default class SD {
+export declare class SD {
     static apiUrl: string;
     connectionID: string;
     success?: boolean;

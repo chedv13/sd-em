@@ -3,8 +3,7 @@
     "declaration": true,
     "lib": [
       "DOM",
-      "ES5",
-      "ES2021"
+      "ES5"
     ],
     "module": "commonjs",
     "noImplicitAny": true,

@@ -1,4 +1,4 @@
-export default class SD {
+export class SD {
     static apiUrl: string = 'http://0.0.0.0:3001/api/v1/em';
 
     connectionID: string;

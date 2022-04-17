@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SD = void 0;
 var SD = /** @class */ (function () {
     function SD(connectionID) {
         var _this = this;
@@ -109,5 +110,5 @@ var SD = /** @class */ (function () {
     SD.apiUrl = 'http://0.0.0.0:3001/api/v1/em';
     return SD;
 }());
-exports.default = SD;
+exports.SD = SD;
 //# sourceMappingURL=index.js.map
