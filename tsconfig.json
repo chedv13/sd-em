@@ -1,15 +1,25 @@
+//{
+//  "compilerOptions": {
+//    "declaration": true,
+//    "lib": [
+//      "DOM",
+//      "ES5"
+//    ],
+//    "module": "commonjs",
+//    "noImplicitAny": true,
+//    "outDir": "./dist",
+//    "rootDir": "./src",
+//    "sourceMap": true,
+//    "target": "es5"
+//  }
+//}
 {
   "compilerOptions": {
-    "declaration": true,
-    "lib": [
-      "DOM",
-      "ES5"
-    ],
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "sourceMap": true,
+    "outDir": "./built",
+    "allowJs": true,
     "target": "es5"
-  }
+  },
+  "include": [
+    "./src/**/*"
+  ]
 }

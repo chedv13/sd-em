@@ -2,11 +2,6 @@
   "name": "@chedv13/sd-em",
   "version": "0.1.12",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "/dist"
-  ],
   "dependencies": {
     "jest": "^27.5.1",
     "ts-loader": "^9.2.8",
@@ -15,13 +10,15 @@
     "webpack-cli": "^4.9.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": "git://github.com/chedv13/sd-em.git",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "source-map-loader": "^3.0.1"
+  }
 }
