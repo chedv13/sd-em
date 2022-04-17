@@ -1,7 +1,8 @@
 const path = require('path');
 
-module.exports = {
+const config1 = {
     entry: './src/index.ts',
+    target: ['web', 'es5'],
     module: {
         rules: [
             {
@@ -12,12 +13,14 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts'],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js',
-        library: 'SD',
-        libraryTarget: 'umd'
-    },
+        filename: 'index.js'
+    }
 };
+
+module.exports = [
+    config1
+];
