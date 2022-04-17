@@ -15,8 +15,10 @@
 //}
 {
   "compilerOptions": {
-    "outDir": "./built",
     "allowJs": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true,
     "target": "es5"
   },
   "include": [
