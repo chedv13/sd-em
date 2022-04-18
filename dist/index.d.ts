@@ -4,8 +4,8 @@ export declare class SD {
     success?: boolean;
     constructor(connectionID: string);
     attachDrawingModal(cssSelector: string, shopDrawingID: string): void;
+    init: () => Promise<void>;
     openDrawingModal(shopDrawingID: string): void;
     private buildModalBody;
-    private validateConnectionID;
     private static createInvalidResponse;
 }
