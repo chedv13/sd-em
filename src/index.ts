@@ -14,11 +14,11 @@ export class SD {
 
         console.log(elements, 'test');
 
-        let self: SD = this;
+        const sneakerDrawsInstance = this;
 
         for (let i = 0; i < elements.length; i++) {
             elements[i].addEventListener('click', function () {
-                self.openDrawingModal(shopDrawingID);
+                sneakerDrawsInstance.openDrawingModal(shopDrawingID);
             });
         }
     }

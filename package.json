@@ -1,6 +1,6 @@
 {
   "name": "@chedv13/sd-em",
-  "version": "0.1.40",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,9 +22,6 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": "git://github.com/chedv13/sd-em.git",
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "source-map-loader": "^3.0.1"
-  }
+  "author": "chedv13",
+  "license": "ISC"
 }

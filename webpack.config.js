@@ -5,19 +5,28 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
+                test: /\.ts?$/,
+                use: [{
+                    loader: 'ts-loader',
+                    options: {
+                        configFile: "tsconfig.json"
+                    }
+                }],
                 exclude: /node_modules/,
-            },
+            }
         ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
+        globalObject: 'this',
         filename: 'index.js',
+        library: {
+            type: 'umd',
+            umdNamedDefine: true,
+        },
         path: path.resolve(__dirname, 'dist'),
-        libraryTarget: 'umd'
     },
-    target: ['web', 'es2015'],
+    target: ['web', 'es5', 'es6'],
 };
