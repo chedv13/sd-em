@@ -1,5 +1,5 @@
 export class SD {
-    static apiUrl: string = 'http://0.0.0.0:3001/api/v1/em';
+    static apiUrl: string = 'https://sd-embedded-backend.herokuapp.com/api/v1/em';
 
     connectionID: string;
     bodyOverflowY: string;
@@ -88,7 +88,7 @@ export class SD {
             url: window.location.href
         };
 
-        return `<iframe src="http://localhost:3000/sd/${shopDrawingID}?data=${btoa(JSON.stringify(data))}&meta=${btoa(JSON.stringify(meta))}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
+        return `<iframe src="https://protected-shore-02044.herokuapp.com/sd/${shopDrawingID}?data=${btoa(JSON.stringify(data))}&meta=${btoa(JSON.stringify(meta))}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
     }
 
     private static createInvalidResponse(txt: string) {
