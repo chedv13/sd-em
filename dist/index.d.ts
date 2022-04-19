@@ -1,6 +1,7 @@
 export declare class SD {
     static apiUrl: string;
     connectionID: string;
+    bodyOverflowY: string;
     inited: boolean;
     success?: boolean;
     constructor(connectionID: string);

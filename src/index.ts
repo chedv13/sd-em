@@ -2,10 +2,12 @@ export class SD {
     static apiUrl: string = 'http://0.0.0.0:3001/api/v1/em';
 
     connectionID: string;
+    bodyOverflowY: string;
     inited: boolean;
     success?: boolean;
 
     constructor(connectionID: string) {
+        this.bodyOverflowY = '';
         this.connectionID = connectionID;
         this.inited = false;
         this.success = undefined;
@@ -52,10 +54,13 @@ export class SD {
         const modalEl = document.createElement('div');
 
         modalEl.className = 'sde__modal';
-        modalEl.innerHTML = `<div style="display:flex;flex-direction:row;justify-content:space-between;padding:16px"><div style="font-size:16px;font-weight:700"></div><div style="cursor:pointer;height:16px;width:16px" onclick="this.closest(&quot;.sde__modal&quot;).remove()"><svg viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667" xml:space="preserve"><g><g><polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333" fill="#222222"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></div></div><div style="display:flex;flex:1 1 auto;justify-content:center">${this.buildModalBody(shopDrawingID, data)}</div>`;
+        modalEl.innerHTML = `<div style="display:flex;flex-direction:row;justify-content:space-between;padding:16px"><div style="font-size:16px;font-weight:700"></div><div style="cursor:pointer;height:16px;width:16px" onclick="this.closest('.sde__modal').remove();document.body.style.overflowY='${this.bodyOverflowY}'"><svg viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667" xml:space="preserve"><g><g><polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333" fill="#222222"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></div></div><div style="display:flex;flex:1 1 auto;justify-content:center">${this.buildModalBody(shopDrawingID, data)}</div>`;
         modalEl.setAttribute('style', 'background-color: white; display: flex; flex-flow: column; height: 100vh; left: 0; position: absolute; top: 0; width: 100%; z-index: 2147483647;');
 
         document.body.appendChild(modalEl);
+
+        this.bodyOverflowY = document.body.style.overflowY;
+        document.body.style.overflowY = 'hidden';
     }
 
     private buildModalBody(shopDrawingID: string, data: object) {
@@ -79,7 +84,7 @@ export class SD {
             url: window.location.href
         };
 
-        return `<iframe src="http://localhost:3000/sd/${shopDrawingID}?data=${Buffer.from(JSON.stringify(data), 'base64')}&meta=${Buffer.from(JSON.stringify(meta), 'base64')}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
+        return `<iframe src="http://localhost:3000/sd/${shopDrawingID}?data=${btoa(JSON.stringify(data))}&meta=${btoa(JSON.stringify(meta))}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
     }
 
     private static createInvalidResponse(txt: string) {
