@@ -65,7 +65,11 @@ export class SD {
 
     private buildModalBody(shopDrawingID: string, data: object) {
         if (!this.inited) {
-            return SD.createInvalidResponse("Seems like SD can't initialized");
+            return SD.createInvalidResponse("Seems like draw can't initialized :(");
+        }
+
+        if (Object.keys(data).length === 0) {
+            return SD.createInvalidResponse("Sorry, you can't join this draw at this time");
         }
 
         if (this.success === undefined) {
