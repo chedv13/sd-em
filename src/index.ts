@@ -61,6 +61,7 @@ export class SD {
 
         this.bodyOverflowY = document.body.style.overflowY;
         document.body.style.overflowY = 'hidden';
+        window.scrollTo(0, 0);
     }
 
     private buildModalBody(shopDrawingID: string, data: object) {
@@ -96,6 +97,6 @@ export class SD {
     }
 
     private static createLoaderResponse(txt: string) {
-        return `<div style="align-items:center;display:flex;flex-direction:column;justify-content:center"><svg style="margin:auto;background:#fff;display:block;shape-rendering:auto" width="64px" height="64px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#1d0e0b" stroke-width="8" r="32" stroke-dasharray="150.79644737231007 52.26548245743669"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform></circle></svg><div style="font-size:16px;margin-top:16px;text-align:center">${txt}</div></div>`;
+        return `<div style="align-items:center;display:flex;flex-direction:column;justify-content:center"><svg style="background:#fff;display:block;shape-rendering:auto" width="64px" height="64px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#1d0e0b" stroke-width="8" r="32" stroke-dasharray="150.79644737231007 52.26548245743669"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform></circle></svg><div style="font-size:16px;margin-top:16px;text-align:center">${txt}</div></div>`;
     }
 }
