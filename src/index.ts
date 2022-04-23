@@ -13,7 +13,7 @@ export class SD {
         this.success = undefined;
     }
 
-    attachDrawingModal(cssSelector: string, shopDrawingID: string, data: object) {
+    attachDrawingModal(cssSelector: string, shopDrawingID: string, data?: object) {
         const
             sneakerDrawsInstance = this,
             elements = window.document.querySelectorAll(cssSelector);
@@ -50,7 +50,7 @@ export class SD {
         }
     };
 
-    openDrawingModal(shopDrawingID: string, data: object) {
+    openDrawingModal(shopDrawingID: string, data?: object) {
         const modalEl = document.createElement('div');
 
         modalEl.className = 'sde__modal';
@@ -64,13 +64,9 @@ export class SD {
         window.scrollTo(0, 0);
     }
 
-    private buildModalBody(shopDrawingID: string, data: object) {
+    private buildModalBody(shopDrawingID: string, data?: object) {
         if (!this.inited) {
             return SD.createInvalidResponse("Seems like draw can't initialized :(");
-        }
-
-        if (Object.keys(data).length === 0) {
-            return SD.createInvalidResponse("Sorry, you can't join this draw at this time");
         }
 
         if (this.success === undefined) {
@@ -85,11 +81,13 @@ export class SD {
             return SD.createInvalidResponse("Ooops ... Drawing for this product doesn't exist");
         }
 
-        const meta = {
-            url: window.location.href
-        };
+        let iframeSrc = `https://protected-shore-02044.herokuapp.com/sd/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;
 
-        return `<iframe src="https://protected-shore-02044.herokuapp.com/sd/${shopDrawingID}?data=${btoa(JSON.stringify(data))}&meta=${btoa(JSON.stringify(meta))}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
+        if (data && Object.keys(data).length !== 0) {
+            iframeSrc += `&data=${btoa(JSON.stringify(data))}`;
+        }
+
+        return `<iframe src="${iframeSrc}" style="border: 1px solid #dadada; width: 100%;"></iframe>`;
     }
 
     private static createInvalidResponse(txt: string) {
