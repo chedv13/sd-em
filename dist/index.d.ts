@@ -1,10 +1,10 @@
 export declare class SD {
     static apiUrl: string;
-    connectionID: string;
+    connectionId: string;
     bodyOverflowY: string;
     inited: boolean;
     success?: boolean;
-    constructor(connectionID: string);
+    constructor(connectionId: string);
     attachDrawingModal(cssSelector: string, shopDrawingID: string, data?: object): void;
     init: () => Promise<void>;
     openDrawingModal(shopDrawingID: string, data?: object): void;

@@ -1,14 +1,14 @@
 export class SD {
     static apiUrl: string = 'https://sd-embedded-backend.herokuapp.com/api/v1/em';
 
-    connectionID: string;
+    connectionId: string;
     bodyOverflowY: string;
     inited: boolean;
     success?: boolean;
 
-    constructor(connectionID: string) {
+    constructor(connectionId: string) {
         this.bodyOverflowY = '';
-        this.connectionID = connectionID;
+        this.connectionId = connectionId;
         this.inited = false;
         this.success = undefined;
     }
@@ -33,7 +33,7 @@ export class SD {
                 response = await fetch(`${SD.apiUrl}/connections/validate`, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-SD-ConnectionID': this.connectionID,
+                        'X-SD-ConnectionID': this.connectionId,
                         'X-SD-Host': window.location.host
                     }
                 }),
@@ -81,7 +81,7 @@ export class SD {
             return SD.createInvalidResponse("Ooops ... Drawing for this product doesn't exist");
         }
 
-        let iframeSrc = `https://protected-shore-02044.herokuapp.com/sd/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;
+        let iframeSrc = `https://protected-shore-02044.herokuapp.com/sd/${this.connectionId}/drawings/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;
 
         if (data && Object.keys(data).length !== 0) {
             iframeSrc += `&data=${btoa(JSON.stringify(data))}`;
