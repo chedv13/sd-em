@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './src/index.ts',
@@ -16,6 +17,12 @@ module.exports = {
             }
         ],
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://api.default.com'),
+            'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
+        }),
+    ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },

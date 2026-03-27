@@ -1,5 +1,5 @@
-export class SD {
-    static apiUrl: string = 'https://sd-embedded-backend.herokuapp.com/api/v1/em';
+export class ENTD {
+    static apiUrl: string = `https://${process.env.API_HOST}/v1/em`;
 
     connectionId: string;
     bodyOverflowY: string;
@@ -30,7 +30,7 @@ export class SD {
 
         try {
             const
-                response = await fetch(`${SD.apiUrl}/connections/validate`, {
+                response = await fetch(`${ENTD.apiUrl}/connections/validate`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'X-SD-ConnectionID': this.connectionId,
@@ -66,19 +66,19 @@ export class SD {
 
     private buildModalBody(shopDrawingID: string, data?: object) {
         if (!this.inited) {
-            return SD.createInvalidResponse("Seems like draw can't initialized :(");
+            return ENTD.createInvalidResponse("Seems like draw can't initialized :(");
         }
 
         if (this.success === undefined) {
-            return SD.createLoaderResponse("Please, try again after few seconds");
+            return ENTD.createLoaderResponse("Please, try again after few seconds");
         }
 
         if (!this.success) {
-            return SD.createInvalidResponse("Oh, no ... You can't enter drawing at this time.<br>Please, try again later");
+            return ENTD.createInvalidResponse("Oh, no ... You can't enter drawing at this time.<br>Please, try again later");
         }
 
         if (!shopDrawingID) {
-            return SD.createInvalidResponse("Ooops ... Drawing for this product doesn't exist");
+            return ENTD.createInvalidResponse("Ooops ... Drawing for this product doesn't exist");
         }
 
         let iframeSrc = `https://protected-shore-02044.herokuapp.com/sd/${this.connectionId}/drawings/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;

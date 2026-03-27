@@ -1,4 +1,4 @@
-export declare class SD {
+export declare class ENTD {
     static apiUrl: string;
     connectionId: string;
     bodyOverflowY: string;
