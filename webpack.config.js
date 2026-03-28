@@ -19,8 +19,8 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://api.default.com'),
-            'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
+            'process.env.API_HOST': JSON.stringify(process.env.API_HOST || 'api.entd.tech'),
+            'process.env.WEB_HOST': JSON.stringify(process.env.WEB_HOST || 'entd.tech'),
         }),
     ],
     resolve: {

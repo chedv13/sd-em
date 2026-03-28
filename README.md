@@ -14,18 +14,18 @@ entdInstance.attachDrawingModal('.entd-draw-btn', '80fee286-888b-414a-b2b9-349b5
 ###### Production
 
 ```
-API_HOST=api.entd.tech npx webpack build --mode production
+API_HOST=api.entd.tech WEB_HOST=entd.tech npx webpack build --mode production
 npm publish
 ```
 
 ###### Staging
 
 ```
-API_HOST=api.sentd.tech npx webpack build --mode development
+API_HOST=api.sentd.tech WEB_HOST=sentd.tech npx webpack build --mode production
 ```
 
 ###### Development
 
 ```
-API_HOST=api.entd.tech:3037 npx webpack build --mode development
+API_HOST=api.entd.tech:3004 WEB_HOST=entd.tech:3037 npx webpack build --mode production
 ```

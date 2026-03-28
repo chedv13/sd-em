@@ -54,7 +54,11 @@ export class ENTD {
         const modalEl = document.createElement('div');
 
         modalEl.className = 'sde__modal';
-        modalEl.innerHTML = `<div style="display:flex;flex-direction:row;justify-content:space-between;padding:16px"><div style="font-size:16px;font-weight:700"></div><div style="cursor:pointer;height:16px;width:16px" onclick="this.closest('.sde__modal').remove();document.body.style.overflowY='${this.bodyOverflowY}'"><svg viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667" xml:space="preserve"><g><g><polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333" fill="#222222"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></div></div><div style="display:flex;flex:1 1 auto;justify-content:center">${this.buildModalBody(shopDrawingID, data)}</div>`;
+        modalEl.innerHTML = `<div style="display:flex;align-items:center;flex-direction:row;justify-content:space-between;padding:16px"><svg width="280" height="36" viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="8" width="3" height="20" rx="1.5" fill="#222222"/>
+  <text x="20" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" letter-spacing="1" fill="#8888a0">Powered by </text>
+  <text x="108" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#222222">ENTD</text>
+</svg><div style="cursor:pointer;height:16px;width:16px" onclick="this.closest('.sde__modal').remove();document.body.style.overflowY='${this.bodyOverflowY}'"><svg viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667" xml:space="preserve"><g><g><polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333" fill="#222222"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></div></div><div style="display:flex;flex:1 1 auto;justify-content:center">${this.buildModalBody(shopDrawingID, data)}</div>`;
         modalEl.setAttribute('style', 'background-color: white; display: flex; flex-flow: column; height: 100vh; left: 0; position: absolute; top: 0; width: 100%; z-index: 2147483647;');
 
         document.body.appendChild(modalEl);
@@ -81,7 +85,7 @@ export class ENTD {
             return ENTD.createInvalidResponse("Ooops ... Drawing for this product doesn't exist");
         }
 
-        let iframeSrc = `https://protected-shore-02044.herokuapp.com/sd/${this.connectionId}/drawings/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;
+        let iframeSrc = `https://${process.env.WEB_HOST}/em/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;
 
         if (data && Object.keys(data).length !== 0) {
             iframeSrc += `&data=${btoa(JSON.stringify(data))}`;
