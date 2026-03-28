@@ -8,6 +8,7 @@ export declare class ENTD {
     attachDrawingModal(cssSelector: string, shopDrawingID: string, data?: object): void;
     init: () => Promise<void>;
     openDrawingModal(shopDrawingID: string, data?: object): Promise<void>;
+    private buildBrandLogo;
     private buildModalBody;
     private static createInvalidResponse;
 }
