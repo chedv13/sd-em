@@ -21,7 +21,7 @@ export class ENTD {
         this.success = undefined;
     }
 
-    attachDrawingModal(cssSelector: string, shopDrawingID: string, data?: object) {
+    attachDrawingModal(cssSelector: string, shopDrawingID: string, data: Record<string, any>) {
         const elements = window.document.querySelectorAll(cssSelector);
 
         elements.forEach((element) => {
@@ -55,7 +55,7 @@ export class ENTD {
         }
     };
 
-    async openDrawingModal(shopDrawingID: string, data?: object) {
+    async openDrawingModal(shopDrawingID: string, data: Record<string, any>) {
         this.bodyOverflowY = document.body.style.overflowY;
 
         const modalEl = document.createElement('div');
@@ -75,7 +75,7 @@ export class ENTD {
         return `<svg width="280" height="36" viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="3" height="20" rx="1.5" fill="#222222"/><text x="12" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" letter-spacing="1" fill="#8888a0">${TEXTS.POWERED_BY}</text><text x="100" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#222222">${TEXTS.BRAND_NAME}</text></svg>`;
     }
 
-    private async buildModalBody(shopDrawingID: string, data?: object) {
+    private async buildModalBody(shopDrawingID: string, data: Record<string, any>) {
         if (!this.inited) {
             return ENTD.createInvalidResponse(TEXTS.ERROR_NOT_INITIALIZED);
         }
@@ -88,7 +88,13 @@ export class ENTD {
             return ENTD.createInvalidResponse(TEXTS.ERROR_DRAWING_NOT_FOUND);
         }
 
-        let iframeSrc = `https://${process.env.WEB_HOST}/em/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}`;
+        if (!data.external_id || !data.source) {
+            // TODO: Здесь сделать более внятную ошибку в будущем
+            return ENTD.createInvalidResponse(TEXTS.ERROR_TRY_AGAIN_LATER);
+        }
+
+        let iframeSrc = `https://${this.connectionId}.${process.env.WEB_HOST}/em/${shopDrawingID}?meta=${btoa(JSON.stringify({url: window.location.href}))}&data=${btoa(JSON.stringify(data))}`;
+
         try {
             const res = await fetch(iframeSrc, {method: 'HEAD', mode: 'no-cors'});
 

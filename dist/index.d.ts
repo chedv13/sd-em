@@ -5,9 +5,9 @@ export declare class ENTD {
     inited: boolean;
     success?: boolean;
     constructor(connectionId: string);
-    attachDrawingModal(cssSelector: string, shopDrawingID: string, data?: object): void;
+    attachDrawingModal(cssSelector: string, shopDrawingID: string, data: Record<string, any>): void;
     init: () => Promise<void>;
-    openDrawingModal(shopDrawingID: string, data?: object): Promise<void>;
+    openDrawingModal(shopDrawingID: string, data: Record<string, any>): Promise<void>;
     private buildBrandLogo;
     private buildModalBody;
     private static createInvalidResponse;
