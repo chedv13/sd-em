@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "DOM",
       "ES2021"
     ],
-    "noImplicitAny": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "target": "es5"
-  }
+    "strict": true,
+    "target": "es5",
+    "types": []
+  },
+  "include": [
+    "src"
+  ]
 }

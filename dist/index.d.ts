@@ -1,14 +1,20 @@
+export interface DrawingData {
+    external_id: string;
+    source: string;
+    [key: string]: unknown;
+}
 export declare class ENTD {
     static apiUrl: string;
-    connectionId: string;
-    bodyOverflowY: string;
+    readonly connectionId: string;
     inited: boolean;
     success?: boolean;
+    private bodyOverflowY;
     constructor(connectionId: string);
-    attachDrawingModal(cssSelector: string, shopDrawingID: string, data: Record<string, any>): void;
     init: () => Promise<void>;
-    openDrawingModal(shopDrawingID: string, data: Record<string, any>): Promise<void>;
-    private buildBrandLogo;
+    attachDrawingModal(cssSelector: string, shopDrawingID: string, data: DrawingData): void;
+    openDrawingModal(shopDrawingID: string, data: DrawingData): Promise<void>;
+    private createModalElement;
+    private closeModal;
     private buildModalBody;
-    private static createInvalidResponse;
+    private buildIframeSrc;
 }

@@ -26,18 +26,18 @@ entdInstance.attachDrawingModal(
 ###### Production
 
 ```
-API_HOST=api.entd.tech WEB_HOST=entd.tech npx webpack build --mode production
+API_HOST=api.entd.tech WEB_HOST=entd.tech npm run build
 npm publish
 ```
 
 ###### Staging
 
 ```
-API_HOST=api.sentd.tech WEB_HOST=sentd.tech npx webpack build --mode production
+API_HOST=api.aientd.space WEB_HOST=aientd.space npm run build
 ```
 
 ###### Development
 
 ```
-API_HOST=api.entd.tech:3004 WEB_HOST=entd.tech:3037 npx webpack build --mode production
+API_HOST=api.entd.tech:3004 WEB_HOST=entd.tech:3037 npm run build
 ```
