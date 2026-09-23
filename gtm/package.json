@@ -1,0 +1,12 @@
+{
+  "name": "entd-gtm",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ENTD Draw Button — Google Tag Manager custom template and its runtime bundle.",
+  "scripts": {
+    "build": "npm run build:prod && npm run build:staging",
+    "build:prod": "cd .. && API_HOST=api.entd.tech WEB_HOST=entd.tech npx webpack build --mode production --output-path gtm/build/prod && cd gtm && cat build/prod/index.js src/entd-gtm.js > build/entd-gtm.js",
+    "build:staging": "cd .. && API_HOST=api.aientd.space WEB_HOST=aientd.space npx webpack build --mode production --output-path gtm/build/staging && cd gtm && cat build/staging/index.js src/entd-gtm.js > build/entd-gtm.staging.js",
+    "test:page": "python3 -m http.server 8090"
+  }
+}

@@ -21,6 +21,44 @@ entdInstance.attachDrawingModal(
 );
 ```
 
+##### Built-in drawing button:
+
+Instead of styling your own trigger element, let the library render an ENTD-branded button
+(similar to the Google Sign-In button). It is inserted into every element matching the selector
+and opens the drawing modal on click.
+
+```ecmascript 6
+entdInstance.renderDrawingButton(
+    '#entd-draw', // CSS selector of the container(s) the button will be rendered into.
+    '80fee286-888b-414a-b2b9-349b56c7c6c6',
+    {external_id: '1234567890', source: 'Test Store'},
+    {
+        theme: 'light',       // 'light' (default) | 'dark' | 'auto' (follows prefers-color-scheme)
+        size: 'medium',       // 'small' | 'medium' (default) | 'large'
+        shape: 'rectangular', // 'rectangular' (default) | 'pill'
+        text: 'enter_draw',   // 'enter_draw' (default) | 'join_giveaway' | 'participate' | 'try_your_luck' | any custom string
+        logo: true,           // show the ENTD mark before the text
+        fullWidth: false,     // stretch to the container width
+        className: '',        // extra class names for the <button>
+    }
+);
+```
+
+Colors of the built-in styles can be tuned via CSS custom properties on `.sde__button`:
+`--sde-btn-bg`, `--sde-btn-fg`, `--sde-btn-border`, `--sde-btn-hover-bg`, `--sde-btn-active-bg`, `--sde-btn-ring`.
+
+To use your own styles entirely, pass `styled: false`. The library will not inject any CSS, and the
+button will be rendered as a bare `<button class="sde__button ...">` with `.sde__button-mark`
+(ENTD wordmark, hidden with `logo: false`) and `.sde__button-label` (text) inside:
+
+```ecmascript 6
+entdInstance.renderDrawingButton('#entd-draw', shopDrawingID, data, {
+    styled: false,
+    className: 'my-shop-button',
+    text: 'Участвовать в розыгрыше',
+});
+```
+
 ##### Build and publish:
 
 ###### Production

@@ -1,0 +1,134 @@
+{%- comment -%}
+  App block. Мерчант добавляет его в любую секцию через редактор темы.
+  Drawing ID берётся из настроек блока, а если пусто — из метаполя товара
+  entd.drawing_id (удобно, когда розыгрыш привязан к конкретному товару).
+  Сам рендер делает entd-shopify.js по data-атрибутам контейнера.
+{%- endcomment -%}
+{%- liquid
+  assign drawing_id = block.settings.drawing_id | strip
+  if drawing_id == blank and product != blank and product.metafields.entd.drawing_id != blank
+    assign drawing_id = product.metafields.entd.drawing_id | strip
+  endif
+
+  assign label = block.settings.text
+  if label == 'custom'
+    assign label = block.settings.custom_text | strip
+  endif
+-%}
+<div
+  class="entd-draw entd-draw--{{ block.settings.alignment }}"
+  data-entd-block="{{ block.id }}"
+  data-drawing-id="{{ drawing_id | escape }}"
+  data-product-id="{{ product.id }}"
+  data-theme="{{ block.settings.theme }}"
+  data-size="{{ block.settings.size }}"
+  data-shape="{{ block.settings.shape }}"
+  data-text="{{ label | escape }}"
+  data-logo="{{ block.settings.logo }}"
+  data-full-width="{{ block.settings.full_width }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if request.design_mode -%}
+    {%- if drawing_id == blank -%}
+      <p class="entd-draw__hint">ENTD: set a Drawing ID in the block settings or in the product metafield <code>entd.drawing_id</code>.</p>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "ENTD Draw button",
+  "target": "section",
+  "stylesheet": "entd-shopify.css",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Requires the “ENTD Draws” app embed to be enabled (Theme settings → App embeds)."
+    },
+    {
+      "type": "text",
+      "id": "drawing_id",
+      "label": "Drawing ID",
+      "info": "ID of the shop drawing in ENTD. Leave empty to use the product metafield entd.drawing_id."
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "text",
+      "label": "Label",
+      "options": [
+        { "value": "enter_draw", "label": "Enter draw" },
+        { "value": "join_giveaway", "label": "Join giveaway" },
+        { "value": "participate", "label": "Participate" },
+        { "value": "try_your_luck", "label": "Try your luck" },
+        { "value": "custom", "label": "Custom text" }
+      ],
+      "default": "enter_draw"
+    },
+    {
+      "type": "text",
+      "id": "custom_text",
+      "label": "Custom text",
+      "info": "Used when Label is set to “Custom text”."
+    },
+    {
+      "type": "select",
+      "id": "theme",
+      "label": "Theme",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "dark", "label": "Dark" },
+        { "value": "auto", "label": "Auto (follows visitor's system)" }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Shape",
+      "options": [
+        { "value": "rectangular", "label": "Rectangular" },
+        { "value": "pill", "label": "Pill" }
+      ],
+      "default": "rectangular"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "logo",
+      "label": "Show ENTD mark",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

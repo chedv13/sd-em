@@ -1,0 +1,7 @@
+api_version = "2025-07"
+uid = "6ba7e5da-353a-48f2-3439-d55faafab09a4c57776f"
+
+[[extensions]]
+name = "ENTD Draws"
+handle = "entd-draws"
+type = "theme"

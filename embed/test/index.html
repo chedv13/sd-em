@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ENTD Embed test</title>
+  <style>body{font-family:system-ui;max-width:640px;margin:40px auto;padding:0 16px} section{margin:32px 0}</style>
+</head>
+<body>
+  <h1>ENTD Embed — staging</h1>
+  <p>npm run build && npm run test:page → http://localhost:8091/test/</p>
+
+  <section>
+    <h2>1. Container → ENTD button</h2>
+    <div data-entd-drawing="fd759166-8222-43cc-a5ed-12af8dbf5c46" data-entd-theme="dark" data-entd-shape="pill"></div>
+  </section>
+
+  <section>
+    <h2>2. Own button</h2>
+    <button data-entd-drawing="fd759166-8222-43cc-a5ed-12af8dbf5c46">My own button</button>
+  </section>
+
+  <section>
+    <h2>3. Builder link (#entd-draw-ID)</h2>
+    <a href="#entd-draw-fd759166-8222-43cc-a5ed-12af8dbf5c46">Enter via link</a>
+  </section>
+
+  <section>
+    <h2>4. Appears later (SPA)</h2>
+    <div id="late"></div>
+  </section>
+
+  <script>
+    setTimeout(function () {
+      document.getElementById('late').innerHTML =
+        '<div data-entd-drawing="fd759166-8222-43cc-a5ed-12af8dbf5c46" data-entd-text="Try your luck"></div>';
+    }, 1500);
+  </script>
+  <script src="../build/entd-embed.staging.js" data-connection-id="03d281d7-b58e-436d-a330-432a74eca14f" async></script>
+</body>
+</html>

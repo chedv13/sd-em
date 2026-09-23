@@ -1,0 +1,6 @@
+homepage: "https://entd.tech"
+documentation: "https://github.com/chedv13/entd-gtm-template#readme"
+versions:
+  # Новые версии добавляются СВЕРХУ. sha — коммит в репозитории шаблона, где лежит нужный template.tpl.
+  - sha: 0000000000000000000000000000000000000000
+    changeNotes: Initial release.

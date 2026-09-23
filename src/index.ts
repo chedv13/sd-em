@@ -1,6 +1,6 @@
-import {TEXTS} from './texts';
+import {BUTTON_TEXTS, TEXTS} from './texts';
 import {CLOSE_ICON_SVG, ERROR_ICON_SVG} from './icons';
-import {STYLES} from './styles';
+import {BUTTON_CSS, BUTTON_STYLES_ID, STYLES} from './styles';
 
 export interface DrawingData {
     // User ID in the shop's system or any other unique identifier of the user.
@@ -9,6 +9,26 @@ export interface DrawingData {
     source: string;
 
     [key: string]: unknown;
+}
+
+export type DrawingButtonText = keyof typeof BUTTON_TEXTS;
+
+export interface DrawingButtonOptions {
+    // `true` (default) renders the button with built-in ENTD styles.
+    // `false` renders a bare <button> with class names only, so the shop applies its own CSS.
+    styled?: boolean;
+    // Color scheme of the built-in styles: 'light' (default), 'dark', or 'auto' to follow the visitor's `prefers-color-scheme`.
+    theme?: 'light' | 'dark' | 'auto';
+    size?: 'small' | 'medium' | 'large';
+    shape?: 'rectangular' | 'pill';
+    // One of the built-in presets ('enter_draw', 'join_giveaway', 'participate', 'try_your_luck') or any custom label.
+    text?: DrawingButtonText | (string & {});
+    // Show the ENTD mark before the label. Default `true`.
+    logo?: boolean;
+    // Stretch the button to the width of its container.
+    fullWidth?: boolean;
+    // Extra class names appended to the <button>.
+    className?: string;
 }
 
 export class ENTD {
@@ -47,6 +67,32 @@ export class ENTD {
         document.querySelectorAll(cssSelector).forEach((element) => {
             element.addEventListener('click', () => this.openDrawingModal(shopDrawingID, data));
         });
+    }
+
+    // Renders an ENTD drawing button inside every element matching `cssSelector`
+    // and wires it to open the drawing modal. Returns the created buttons.
+    renderDrawingButton(
+        cssSelector: string,
+        shopDrawingID: string,
+        data: DrawingData,
+        options: DrawingButtonOptions = {},
+    ): HTMLButtonElement[] {
+        const styled = options.styled !== false;
+        const buttons: HTMLButtonElement[] = [];
+
+        if (styled) {
+            ensureButtonStyles();
+        }
+
+        document.querySelectorAll(cssSelector).forEach((container) => {
+            const button = buildButtonElement(options, styled);
+
+            button.addEventListener('click', () => this.openDrawingModal(shopDrawingID, data));
+            container.appendChild(button);
+            buttons.push(button);
+        });
+
+        return buttons;
     }
 
     async openDrawingModal(shopDrawingID: string, data: DrawingData): Promise<void> {
@@ -129,6 +175,71 @@ export class ENTD {
 
 function buildBrandLogo(): string {
     return `<svg width="280" height="36" viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="3" height="20" rx="1.5" fill="#222222"/><text x="12" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" letter-spacing="1" fill="#8888a0">${TEXTS.POWERED_BY}</text><text x="100" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#222222">${TEXTS.BRAND_NAME}</text></svg>`;
+}
+
+function ensureButtonStyles(): void {
+    if (document.getElementById(BUTTON_STYLES_ID)) {
+        return;
+    }
+
+    const styleEl = document.createElement('style');
+
+    styleEl.id = BUTTON_STYLES_ID;
+    styleEl.textContent = BUTTON_CSS;
+    document.head.appendChild(styleEl);
+}
+
+function buildButtonElement(options: DrawingButtonOptions, styled: boolean): HTMLButtonElement {
+    const button = document.createElement('button');
+    const label = resolveButtonText(options.text);
+
+    const classNames = ['sde__button'];
+
+    if (styled) {
+        classNames.push('sde__button--entd');
+    }
+
+    if (options.className) {
+        classNames.push(options.className);
+    }
+
+    button.type = 'button';
+    button.className = classNames.join(' ');
+    button.setAttribute('aria-label', `${label} (${TEXTS.BRAND_NAME})`);
+
+    if (styled) {
+        button.setAttribute('data-theme', options.theme || 'light');
+        button.setAttribute('data-size', options.size || 'medium');
+        button.setAttribute('data-shape', options.shape || 'rectangular');
+
+        if (options.fullWidth) {
+            button.setAttribute('data-width', 'full');
+        }
+    }
+
+    const mark = options.logo === false
+        ? ''
+        : `<span class="sde__button-mark" aria-hidden="true"><span class="sde__button-bar"></span>${TEXTS.BRAND_NAME}</span>`;
+
+    button.innerHTML = `${mark}<span class="sde__button-label">${escapeHtml(label)}</span>`;
+
+    return button;
+}
+
+function resolveButtonText(text: DrawingButtonOptions['text']): string {
+    if (!text) {
+        return BUTTON_TEXTS.enter_draw;
+    }
+
+    return (BUTTON_TEXTS as Record<string, string>)[text] || text;
+}
+
+function escapeHtml(value: string): string {
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }
 
 function buildErrorBody(text: string): string {

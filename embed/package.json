@@ -1,0 +1,13 @@
+{
+  "name": "entd-embed",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ENTD Embed — no-code drawing buttons for site builders (Tilda, Webflow, Squarespace…) and plain HTML.",
+  "scripts": {
+    "build": "npm run build:prod && npm run build:staging",
+    "build:prod": "cd .. && API_HOST=api.entd.tech WEB_HOST=entd.tech npx webpack build --mode production --output-path embed/build/prod && cd embed && cat build/prod/index.js src/entd-embed.js > build/entd-embed.js",
+    "build:staging": "cd .. && API_HOST=api.aientd.space WEB_HOST=aientd.space npx webpack build --mode production --output-path embed/build/staging && cd embed && cat build/staging/index.js src/entd-embed.js > build/entd-embed.staging.js",
+    "publish:frontend": "npm run build && (cd ../gtm && npm run build) && sh bin/publish-frontend.sh",
+    "test:page": "python3 -m http.server 8091"
+  }
+}

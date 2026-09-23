@@ -8,3 +8,5 @@ export declare const STYLES: {
     error: string;
     errorText: string;
 };
+export declare const BUTTON_STYLES_ID = "sde__button-styles";
+export declare const BUTTON_CSS: string;

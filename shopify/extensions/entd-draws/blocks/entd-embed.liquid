@@ -1,0 +1,50 @@
+{%- comment -%}
+  App embed block. Включается мерчантом один раз в редакторе темы
+  (Theme editor -> App embeds -> ENTD Draws). Хранит настройки магазина,
+  подключает библиотеку и glue-скрипт на всех страницах.
+{%- endcomment -%}
+<script>
+  window.ENTDShopify = window.ENTDShopify || {};
+  window.ENTDShopify.config = {
+    connectionId: {{ block.settings.connection_id | strip | json }},
+    shopDomain: {{ shop.permanent_domain | json }},
+    shopName: {{ shop.name | json }},
+    customerId: {{ customer.id | json }},
+    guestMode: {{ block.settings.guest_mode | json }},
+    loginUrl: {{ routes.account_login_url | json }},
+    locale: {{ request.locale.iso_code | json }},
+    designMode: {{ request.design_mode | json }}
+  };
+</script>
+<script src="{{ 'entd.js' | asset_url }}" defer></script>
+<script src="{{ 'entd-shopify.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "ENTD Draws",
+  "target": "head",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Connects your store to ENTD. After enabling, add the “ENTD Draw button” block to a product page or any section."
+    },
+    {
+      "type": "text",
+      "id": "connection_id",
+      "label": "Connection ID",
+      "info": "Unique identifier of your shop in the ENTD system."
+    },
+    {
+      "type": "select",
+      "id": "guest_mode",
+      "label": "Visitors who are not logged in",
+      "options": [
+        { "value": "anonymous", "label": "Can enter with an anonymous ID" },
+        { "value": "login", "label": "Must log in first" }
+      ],
+      "default": "anonymous",
+      "info": "Logged-in customers are always identified by their Shopify customer ID."
+    }
+  ]
+}
+{% endschema %}

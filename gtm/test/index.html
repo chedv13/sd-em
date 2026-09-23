@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ENTD GTM bundle test</title>
+  <style>body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; }</style>
+</head>
+<body>
+  <h1>ENTD GTM bundle test</h1>
+  <p>Эмулирует то, что делает тег: пушит настройки в <code>window.entdGtmQueue</code> и грузит бандл.
+    Запуск: <code>cd gtm && npm run build && npm run test:page</code> → http://localhost:8090/test/</p>
+
+  <h2>Render mode</h2>
+  <div id="entd-draw"></div>
+
+  <h2>Attach mode</h2>
+  <a href="#" class="my-draw-link">My own link opens the modal</a>
+
+  <h2>Late container (SPA)</h2>
+  <div id="late"></div>
+
+  <script>
+    // То, что делает createQueue + push в шаблоне (порядок: сначала пуш, потом скрипт).
+    window.entdGtmQueue = window.entdGtmQueue || [];
+    var base = {
+      connectionId: 'd9c7b289-e8ac-40da-92a3-18d0ca13c927',
+      drawingId: '80fee286-888b-414a-b2b9-349b56c7c6c6',
+      externalId: '',
+      guestMode: 'anonymous',
+      loginUrl: '',
+      source: '',
+      extra: {product_id: '42'},
+      button: {text: 'enter_draw', theme: 'light', size: 'medium', shape: 'rectangular', logo: true, fullWidth: false, className: ''}
+    };
+    function item(overrides) { return Object.assign({}, base, overrides); }
+
+    window.entdGtmQueue.push(item({selector: '#entd-draw, .late-draw', mode: 'render'}));
+    // Повторный запуск того же тега не должен дублировать кнопку.
+    window.entdGtmQueue.push(item({selector: '#entd-draw, .late-draw', mode: 'render'}));
+
+    var s = document.createElement('script');
+    s.src = '../build/entd-gtm.staging.js';
+    s.onload = function () {
+      // Тег, сработавший уже после загрузки бандла.
+      window.entdGtmQueue.push(item({selector: '.my-draw-link', mode: 'attach'}));
+      // Контейнер, появившийся позже.
+      setTimeout(function () {
+        document.getElementById('late').innerHTML = '<div class="late-draw"></div>';
+      }, 500);
+    };
+    document.head.appendChild(s);
+  </script>
+</body>
+</html>

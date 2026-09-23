@@ -1,0 +1,14 @@
+{
+  "name": "entd-woocommerce",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ENTD Draws — WordPress/WooCommerce plugin.",
+  "scripts": {
+    "sync": "cd .. && API_HOST=api.entd.tech WEB_HOST=entd.tech npm run build && cd woocommerce && cp ../dist/index.js entd-draws/assets/entd.js",
+    "sync:staging": "cd .. && API_HOST=api.aientd.space WEB_HOST=aientd.space npm run build && cd woocommerce && cp ../dist/index.js entd-draws/assets/entd.js",
+    "zip": "rm -f entd-draws.zip && zip -rq entd-draws.zip entd-draws -x '*.DS_Store' -x '*/.gitkeep'",
+    "env:up": "docker compose up -d && ./bin/setup-local.sh",
+    "env:down": "docker compose down",
+    "env:reset": "docker compose down -v"
+  }
+}

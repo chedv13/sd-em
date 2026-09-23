@@ -1,0 +1,29 @@
+.entd-draw {
+  display: flex;
+  margin: 0.75rem 0;
+}
+
+.entd-draw--left {
+  justify-content: flex-start;
+}
+
+.entd-draw--center {
+  justify-content: center;
+}
+
+.entd-draw--right {
+  justify-content: flex-end;
+}
+
+.entd-draw__hint {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px dashed #c9c9d4;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: #55556a;
+}
+
+.entd-draw__hint code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

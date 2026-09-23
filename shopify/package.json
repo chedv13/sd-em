@@ -1,0 +1,16 @@
+{
+  "name": "entd-shopify",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ENTD Draws — extension-only Shopify app (theme app extension).",
+  "scripts": {
+    "dev": "shopify app dev",
+    "deploy": "shopify app deploy",
+    "info": "shopify app info",
+    "sync": "cd .. && API_HOST=api.entd.tech WEB_HOST=entd.tech npm run build && cd shopify && cp ../dist/index.js extensions/entd-draws/assets/entd.js",
+    "sync:staging": "cd .. && API_HOST=api.aientd.space WEB_HOST=aientd.space npm run build && cd shopify && cp ../dist/index.js extensions/entd-draws/assets/entd.js"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.80.0"
+  }
+}
