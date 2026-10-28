@@ -1,7 +1,7 @@
 # ENTD Draw Button — Google Tag Manager template
 
 Adds an [ENTD](https://entd.tech) draw button to any website through Google Tag Manager.
-Visitors enter a shop drawing in the ENTD modal without leaving the page.
+Visitors enter an organization drawing in the ENTD modal without leaving the page.
 
 ## Setup
 
@@ -9,7 +9,7 @@ Visitors enter a shop drawing in the ENTD modal without leaving the page.
    search for **ENTD Draw Button** and add it.
    (Or: **Templates → Tag Templates → New → ⋮ → Import** and pick `template.tpl` from this repository.)
 2. Fill in:
-   - **Connection ID** — your shop identifier in ENTD.
+   - **Connection ID** — your organization identifier in ENTD.
    - **Drawing ID** — the drawing to open. Can be a variable (e.g. a Data Layer Variable per product page).
    - **Mode**
      - *Render the ENTD button into a container* — put an empty element on your page, e.g. `<div id="entd-draw"></div>`,

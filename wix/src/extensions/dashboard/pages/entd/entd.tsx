@@ -15,7 +15,7 @@ import '@wix/design-system/styles.global.css';
 const STEPS = [
   {
     title: 'Get your IDs in ENTD',
-    text: 'In your ENTD shop dashboard, copy the Connection ID of this site and the Drawing ID of the draw you want to run.',
+    text: 'In your ENTD organization dashboard, copy the Connection ID of this site and the Drawing ID of the draw you want to run.',
   },
   {
     title: 'Add the widget',

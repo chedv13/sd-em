@@ -3,7 +3,7 @@ import {CLOSE_ICON_SVG, ERROR_ICON_SVG} from './icons';
 import {BUTTON_CSS, BUTTON_STYLES_ID, STYLES} from './styles';
 
 export interface DrawingData {
-    // User ID in the shop's system or any other unique identifier of the user.
+    // User ID in the organization's system or any other unique identifier of the user.
     external_id: string;
     // Source of the drawing (e.g. name of the store, website, etc.).
     source: string;
@@ -15,7 +15,7 @@ export type DrawingButtonText = keyof typeof BUTTON_TEXTS;
 
 export interface DrawingButtonOptions {
     // `true` (default) renders the button with built-in ENTD styles.
-    // `false` renders a bare <button> with class names only, so the shop applies its own CSS.
+    // `false` renders a bare <button> with class names only, so the organization applies its own CSS.
     styled?: boolean;
     // Color scheme of the built-in styles: 'light' (default), 'dark', or 'auto' to follow the visitor's `prefers-color-scheme`.
     theme?: 'light' | 'dark' | 'auto';
@@ -63,9 +63,9 @@ export class ENTD {
         }
     };
 
-    attachDrawingModal(cssSelector: string, shopDrawingID: string, data: DrawingData): void {
+    attachDrawingModal(cssSelector: string, organizationDrawingID: string, data: DrawingData): void {
         document.querySelectorAll(cssSelector).forEach((element) => {
-            element.addEventListener('click', () => this.openDrawingModal(shopDrawingID, data));
+            element.addEventListener('click', () => this.openDrawingModal(organizationDrawingID, data));
         });
     }
 
@@ -73,7 +73,7 @@ export class ENTD {
     // and wires it to open the drawing modal. Returns the created buttons.
     renderDrawingButton(
         cssSelector: string,
-        shopDrawingID: string,
+        organizationDrawingID: string,
         data: DrawingData,
         options: DrawingButtonOptions = {},
     ): HTMLButtonElement[] {
@@ -87,7 +87,7 @@ export class ENTD {
         document.querySelectorAll(cssSelector).forEach((container) => {
             const button = buildButtonElement(options, styled);
 
-            button.addEventListener('click', () => this.openDrawingModal(shopDrawingID, data));
+            button.addEventListener('click', () => this.openDrawingModal(organizationDrawingID, data));
             container.appendChild(button);
             buttons.push(button);
         });
@@ -95,7 +95,7 @@ export class ENTD {
         return buttons;
     }
 
-    async openDrawingModal(shopDrawingID: string, data: DrawingData): Promise<void> {
+    async openDrawingModal(organizationDrawingID: string, data: DrawingData): Promise<void> {
         this.bodyOverflowY = document.body.style.overflowY;
 
         const modalEl = this.createModalElement();
@@ -104,7 +104,7 @@ export class ENTD {
         document.body.style.overflowY = 'hidden';
         window.scrollTo(0, 0);
 
-        modalEl.querySelector('.sde__modal-body')!.innerHTML = await this.buildModalBody(shopDrawingID, data);
+        modalEl.querySelector('.sde__modal-body')!.innerHTML = await this.buildModalBody(organizationDrawingID, data);
     }
 
     private createModalElement(): HTMLDivElement {
@@ -129,7 +129,7 @@ export class ENTD {
         document.body.style.overflowY = this.bodyOverflowY;
     }
 
-    private async buildModalBody(shopDrawingID: string, data: DrawingData): Promise<string> {
+    private async buildModalBody(organizationDrawingID: string, data: DrawingData): Promise<string> {
         if (!this.inited) {
             return buildErrorBody(TEXTS.ERROR_NOT_INITIALIZED);
         }
@@ -138,7 +138,7 @@ export class ENTD {
             return buildErrorBody(TEXTS.ERROR_TRY_AGAIN_LATER);
         }
 
-        if (!shopDrawingID) {
+        if (!organizationDrawingID) {
             return buildErrorBody(TEXTS.ERROR_DRAWING_NOT_FOUND);
         }
 
@@ -147,7 +147,7 @@ export class ENTD {
             return buildErrorBody(TEXTS.ERROR_TRY_AGAIN_LATER);
         }
 
-        const iframeSrc = this.buildIframeSrc(shopDrawingID, data);
+        const iframeSrc = this.buildIframeSrc(organizationDrawingID, data);
 
         try {
             // no-cors: ответ будет opaque, проверяем только сетевую доступность страницы.
@@ -163,13 +163,13 @@ export class ENTD {
         }
     }
 
-    private buildIframeSrc(shopDrawingID: string, data: DrawingData): string {
+    private buildIframeSrc(organizationDrawingID: string, data: DrawingData): string {
         const params = new URLSearchParams({
             meta: btoa(JSON.stringify({url: window.location.href})),
             data: btoa(JSON.stringify(data)),
         });
 
-        return `https://${this.connectionId}.${process.env.WEB_HOST}/em/${shopDrawingID}?${params.toString()}`;
+        return `https://${this.connectionId}.${process.env.WEB_HOST}/em/${organizationDrawingID}?${params.toString()}`;
     }
 }
 

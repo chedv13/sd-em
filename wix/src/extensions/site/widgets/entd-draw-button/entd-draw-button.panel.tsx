@@ -105,12 +105,12 @@ const Panel: FC = () => {
       <SidePanel width="300" height="100vh">
         <SidePanel.Content noPadding stretchVertically>
           <SidePanel.Field>
-            <FormField label="Connection ID" infoContent="Unique identifier of your shop in ENTD.">
+            <FormField label="Connection ID" infoContent="Unique identifier of your organization in ENTD.">
               <Input value={props['connection-id']} onChange={input('connection-id')} />
             </FormField>
           </SidePanel.Field>
           <SidePanel.Field>
-            <FormField label="Drawing ID" infoContent="ID of the shop drawing in ENTD.">
+            <FormField label="Drawing ID" infoContent="ID of the organization drawing in ENTD.">
               <Input value={props['drawing-id']} onChange={input('drawing-id')} />
             </FormField>
           </SidePanel.Field>

@@ -22,7 +22,7 @@ ___INFO___
     "id": "brand_dummy",
     "displayName": "ENTD"
   },
-  "description": "Adds an ENTD draw button to your site. Visitors enter a shop drawing in the ENTD modal without leaving the page. Render a branded button into a container, or open the modal from your own element.",
+  "description": "Adds an ENTD draw button to your site. Visitors enter an organization drawing in the ENTD modal without leaving the page. Render a branded button into a container, or open the modal from your own element.",
   "containerContexts": [
     "WEB"
   ]
@@ -37,7 +37,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "connectionId",
     "displayName": "Connection ID",
     "simpleValueType": true,
-    "help": "Unique identifier of your shop in the ENTD system.",
+    "help": "Unique identifier of your organization in the ENTD system.",
     "valueValidators": [
       {
         "type": "NON_EMPTY"
@@ -49,7 +49,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "drawingId",
     "displayName": "Drawing ID",
     "simpleValueType": true,
-    "help": "ID of the shop drawing in ENTD. Can be a variable, e.g. a Data Layer Variable with the drawing of the current product.",
+    "help": "ID of the organization drawing in ENTD. Can be a variable, e.g. a Data Layer Variable with the drawing of the current product.",
     "valueValidators": [
       {
         "type": "NON_EMPTY"

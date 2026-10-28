@@ -45,7 +45,7 @@ class ENTD_Settings {
 				'type'     => 'text',
 				'id'       => self::id( 'connection_id' ),
 				'title'    => __( 'Connection ID', 'entd-draws' ),
-				'desc_tip' => __( 'Unique identifier of your shop in the ENTD system.', 'entd-draws' ),
+				'desc_tip' => __( 'Unique identifier of your organization in the ENTD system.', 'entd-draws' ),
 				'default'  => $d['connection_id'],
 				'css'      => 'min-width: 360px;',
 			),

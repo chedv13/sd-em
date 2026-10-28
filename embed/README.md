@@ -34,7 +34,7 @@ https://entd.tech/integrations (исходники в entd-frontend: `src/compon
 ```bash
 cd embed
 npm run build              # build/entd-embed.js (api.entd.tech) и build/entd-embed.staging.js (api.aientd.space)
-npm run test:page          # http://localhost:8091/test/ — стенд со staging-бандлом (shop vega)
+npm run test:page          # http://localhost:8091/test/ — стенд со staging-бандлом (organization vega)
 npm run publish:frontend   # собрать embed + gtm и положить все бандлы в ../../entd-frontend/public/sdk/{prod,staging}
 ```
 

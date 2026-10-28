@@ -23,12 +23,12 @@ export declare class ENTD {
   success?: boolean;
   constructor(connectionId: string);
   init: () => Promise<void>;
-  attachDrawingModal(cssSelector: string, shopDrawingID: string, data: DrawingData): void;
+  attachDrawingModal(cssSelector: string, organizationDrawingID: string, data: DrawingData): void;
   renderDrawingButton(
     cssSelector: string,
-    shopDrawingID: string,
+    organizationDrawingID: string,
     data: DrawingData,
     options?: DrawingButtonOptions,
   ): HTMLButtonElement[];
-  openDrawingModal(shopDrawingID: string, data: DrawingData): Promise<void>;
+  openDrawingModal(organizationDrawingID: string, data: DrawingData): Promise<void>;
 }

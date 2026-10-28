@@ -20,7 +20,7 @@ class ENTD_Product {
 				'label'       => __( 'ENTD Drawing ID', 'entd-draws' ),
 				'placeholder' => '80fee286-888b-414a-b2b9-349b56c7c6c6',
 				'desc_tip'    => true,
-				'description' => __( 'ID of the shop drawing in ENTD. When set, the draw button is shown on this product page.', 'entd-draws' ),
+				'description' => __( 'ID of the organization drawing in ENTD. When set, the draw button is shown on this product page.', 'entd-draws' ),
 			)
 		);
 

@@ -22,7 +22,7 @@ const BUTTON_DARK_VARS =
 
 // Stylesheet for the built-in drawing button. Injected into <head> once, only when `styled` is not false.
 // Everything is scoped to `.sde__button--entd`, so a bare `.sde__button` (styled: false) is never touched.
-// Colors are exposed as CSS custom properties so shops can tune them without replacing the whole stylesheet.
+// Colors are exposed as CSS custom properties so organizations can tune them without replacing the whole stylesheet.
 export const BUTTON_CSS =
     `.sde__button--entd{` +
     '--sde-btn-bg:#ffffff;' +

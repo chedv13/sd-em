@@ -4,14 +4,14 @@
 
 ```ecmascript 6
 const entdInstance = new ENTD(
-    // Unique identifier of your shop in ENTD system.
+    // Unique identifier of your organization in ENTD system.
     'd9c7b289-e8ac-40da-92a3-18d0ca13c927'
 );
 
 entdInstance.init();
 entdInstance.attachDrawingModal(
     '.entd-draw-btn', // CSS selector of the element that will trigger the drawing modal.
-    '80fee286-888b-414a-b2b9-349b56c7c6c6', // ID of shop drawing in ENTD system that will be used in the drawing modal.
+    '80fee286-888b-414a-b2b9-349b56c7c6c6', // ID of organization drawing in ENTD system that will be used in the drawing modal.
     {
         // User ID in your system or any other unique identifier of the user.
         external_id: '1234567890',
@@ -52,9 +52,9 @@ button will be rendered as a bare `<button class="sde__button ...">` with `.sde_
 (ENTD wordmark, hidden with `logo: false`) and `.sde__button-label` (text) inside:
 
 ```ecmascript 6
-entdInstance.renderDrawingButton('#entd-draw', shopDrawingID, data, {
+entdInstance.renderDrawingButton('#entd-draw', organizationDrawingID, data, {
     styled: false,
-    className: 'my-shop-button',
+    className: 'my-organization-button',
     text: 'Участвовать в розыгрыше',
 });
 ```
